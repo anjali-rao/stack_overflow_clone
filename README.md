@@ -1,2 +1,2 @@
-# stack_overflow_clone
+# Stack Overflow Clone
 Provides basic functions provided by stackoverflow
