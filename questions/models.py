@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey
 
 class Question(models.Model):
     '''
@@ -11,8 +13,8 @@ class Question(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     title = models.CharField(max_length=150)
-    body = models.CharField(max_length=30000)
-    _tags = models.CharField(max_length=500)
+    body = models.TextField()
+    _tags = models.TextField()
 
     #returns list of _tags
     @property
@@ -25,17 +27,17 @@ class Answer(models.Model):
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer = models.CharField(max_length=30000)
+    answer = models.TextField()
 
 class Vote(models.Model):
     '''
     Stores upvotes/downvotes for an item like question, answer and comment.
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
-    item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="item")
+
+    v_item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="v_item")
     item_id = models.PositiveIntegerField()
-    item_object = GenericForeignKey('item', 'item_id')
+    item_object = GenericForeignKey('v_item', 'item_id')
 
     upvotes = models.IntegerField()
     downvotes = models.IntegerField()
@@ -46,8 +48,8 @@ class Comment(models.Model):
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="item")
+    c_item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="c_item")
     item_id = models.PositiveIntegerField()
-    item_object = GenericForeignKey('item', 'item_id')
+    item_object = GenericForeignKey('c_item', 'item_id')
 
-    comment = models.CharField(max_length=30000)
+    comment = models.TextField()

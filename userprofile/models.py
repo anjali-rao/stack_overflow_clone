@@ -18,9 +18,9 @@ class ReadItems(models.Model):
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="item")
+    r_item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="r_item")
     item_id = models.PositiveIntegerField()
-    item_object = GenericForeignKey('item', 'item_id')
+    item_object = GenericForeignKey('r_item', 'item_id')
 
     read_status = models.BooleanField(default=False)
 
@@ -31,9 +31,8 @@ class Favorites(models.Model):
     '''
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
-    item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="item")
+    f_item = models.ForeignKey(ContentType, on_delete=models.CASCADE, related_name="f_item")
     item_id = models.PositiveIntegerField()
-    item_object = GenericForeignKey('item', 'item_id')
+    item_object = GenericForeignKey('f_item', 'item_id')
 
     fav_status = models.BooleanField(default=False)
-
