@@ -5,8 +5,8 @@
 
     function submitQuestion(){
 
-        $("#submit-question").text("")
-            .addClass("fas fa-spinner fa-spin");
+        $("#submit-question span").text("");
+        $("#submit-question i").removeClass("no-display");
 
         var params = {
             "title": $("#title").val(),
@@ -24,9 +24,10 @@
                     window.location = "/";
                     return;
             } else {
-                $("#submit-question").text("Try again!")
-                    .removeClass("btn-primary fas fa-spinner fa-spin")
+                $("#submit-question").removeClass("btn-primary")
                     .addClass("btn-danger");
+                $("#submit-question span").text("Try again!");
+                $("#submit-question i").addClass("no-display");
             }
         });
 
