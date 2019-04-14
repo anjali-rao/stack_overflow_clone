@@ -7,11 +7,15 @@ from django.contrib.auth import logout
 from .utils import auth_user
 
 def login_page(request):
+    '''
+    Renders the login page
+    '''
     return render(request, "login.html")
 
 def signup(request):
-    #Creates a record for a new user.
-
+    '''
+    Creates a record for a new user.
+    '''
     username = request.POST.get('username', '')
     user = User.objects.filter(username=username).first()
 
@@ -29,22 +33,26 @@ def signup(request):
     return JsonResponse(resp)
 
 def login_user(request):
-    #take user name and login, create new if does not exist
-
+    '''
+    Authenticate and login a user for a given username
+    '''
     username = request.POST.get('username', '')
     resp = auth_user(request, username)
 
     return JsonResponse(resp)
 
+@login_required
 def logout_user(request):
+    '''
+    Logs out the current logged in user
+    '''
     logout(request)
     return redirect("login")
 
 @login_required
 def home(request):
-
+    '''
+    Renders logged in user's home page.
+    '''
     context = dict(user=request.user)
     return render(request, "home.html", context);
-
-def display_profile():
-    pass

@@ -8,10 +8,16 @@ from .utils import render_questions
 
 @login_required
 def ask_question(request):
+    '''
+    Renders the page to add a new question
+    '''
     return render(request, 'ask_question.html')
 
 @login_required
 def add_question(request):
+    '''
+    Adds a new question record using the title, description and tags
+    '''
     title = request.POST.get('title', '')
     description = request.POST.get('description', '')
     tags = request.POST.get('tags', '')
@@ -30,6 +36,11 @@ def add_question(request):
 
 @login_required
 def list_user_questions(request):
+    '''
+    Lists out the current logged in user's questions and also grants a
+    access to delete the question as the questions belong
+    to the user
+    '''
     user_questions = Question.objects.filter(user=request.user)
     if not user_questions:
         return JsonResponse(dict(success=False))
@@ -38,6 +49,11 @@ def list_user_questions(request):
 
 @login_required
 def list_community_questions(request):
+    '''
+    Lists out the community's questions and also provide
+    denies access to delete the question as the questions
+    do not belong to the user.
+    '''
     community_questions = Question.objects.filter(~Q(user=request.user))
     if not community_questions:
         return JsonResponse(dict(success=False))
@@ -46,6 +62,10 @@ def list_community_questions(request):
 
 @login_required
 def delete_question(request):
+    '''
+    Delete a question for a given question id. This acrtion can
+    be performed for the current logged user's questions only.
+    '''
     question_id = request.POST.get("question_id", "")
     question = Question.objects.filter(id=question_id).first()
 
