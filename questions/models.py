@@ -19,7 +19,7 @@ class Question(models.Model):
     #returns list of _tags
     @property
     def tags(self):
-        return [int(x.strip('[]')) for x in self._tags.split(',') if x.strip('[]')]
+        return [x.strip('[]') for x in self._tags.split(',') if x.strip('[]')]
 
 class Answer(models.Model):
     '''

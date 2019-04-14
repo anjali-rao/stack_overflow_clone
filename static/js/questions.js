@@ -1,7 +1,6 @@
 ;(function() {
 
     var postRequest = window.stackoverflow.postRequest;
-    var displayError = window.stackoverflow.displayError;
 
     function submitQuestion(){
 

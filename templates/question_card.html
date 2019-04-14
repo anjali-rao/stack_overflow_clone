@@ -1,0 +1,32 @@
+{% load static %}
+
+{% block body %}
+    {% for i in questions%}
+        <div class="card border-0">
+            <div>
+                {% if delete_access %}
+                    <i class="fas fa-trash-alt float-right text-muted pointer delete" id="{{ i.id }}"></i>
+                    <i class="fas fa-spinner fa-spin float-right text-muted no-display del-wait"></i>
+                {% endif%}
+
+                <h4>{{ i.title }} </h4>
+            </div>
+
+            <span class="text-muted">{{i.body}}</span>
+            <div class="mt-3">
+                {% for j in i.tags %}
+                    <span class="badge tag badge-stack-overflow">{{ j }}</span>
+                {% endfor %}
+            </div>
+            <span>
+                <small class="float-right text-muted mt-1-1">
+                    Asked by <b>{{i.user.username}}</b>
+                </small>
+            </span>
+
+        <hr/>
+        </div>
+    {% endfor %}
+    
+
+{% endblock %}
