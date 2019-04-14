@@ -25,3 +25,7 @@
     border-radius: 3px;
     font-size: 12px;
 }
+
+.no-display{
+    display: none;
+}

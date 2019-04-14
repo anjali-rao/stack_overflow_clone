@@ -21,7 +21,7 @@
         var params = {
             "username": username,
         };
-        var url = "/login_user";
+        var url = "/user_login";
 
         var request = postRequest(url, params);
         request.done(function(result){
