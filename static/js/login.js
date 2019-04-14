@@ -1,7 +1,6 @@
 ;(function() {
 
     var postRequest = window.stackoverflow.postRequest;
-    var CSRF_TOKEN = window.stackoverflow.CSRF_TOKEN;
     var displayError = window.stackoverflow.displayError;
 
     function getUsername(){

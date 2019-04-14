@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    {% include "navbar.html" %}
+    <div class="container">
+        <h4 class="text-muted mt-4"> Ask a question </h4>
+        <div class="mt-4">
+            <span> Title </span>
+            <input type="text" class="form-control" placeholder="Ask a question" id="title"/>
+            <br/>
+            <span> Description </span>
+            <textarea class="form-control" placeholder="Explain the question briefly" id="description"></textarea>
+            <br/>
+            <span> Add tags to make search easy </span>
+            <input type="text" class="form-control" data-role="tagsinput" id="tags"/>
+            <br/><br/>
+            <button class="btn btn-primary" id="submit-question"> 
+            <i class="fas fa-spinner fa-spin no-display"></i>Submit question </button>
+        </div>
+
+        <br/>
+
+    </div>
+
+{% endblock %}
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/questions.js' %}"></script>
+
+{% endblock %}
