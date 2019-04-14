@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    {% include "navbar.html" %}
+
+{% endblock %}
+{% block scripts %}
+    {{ block.super }}
+    <script src="{% static 'js/utils.js' %}"></script>
+    <script src="{% static 'js/login.js' %}"></script>
+
+{% endblock %}

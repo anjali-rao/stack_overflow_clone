@@ -5,3 +5,11 @@
 .logo-color {
     color: #f1813a;
 }
+
+.float-right {
+    float: right;
+}
+
+.pointer {
+    cursor: pointer;
+}

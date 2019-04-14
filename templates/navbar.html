@@ -1,0 +1,21 @@
+{% load static %}
+
+{% block body %}
+   <nav class="navbar navbar-light bg-light">
+  		<span class="navbar-brand mb-0">
+		    <i class="fab fa-stack-overflow logo-color mr-2"></i>
+            stack <b>overflow</b>
+
+		</span>
+            <span class="float-right">
+                <i class="fas fa-user text-muted"></i>
+                <span class="text-muted pr-2">{{ user.username }}</span>
+                <a href="/logout">
+                    <i class="fas fa-sign-out-alt text-muted p-1 pointer"></i>
+                </a>
+            </span>
+
+	</nav>
+
+{% endblock %}
+
