@@ -1,61 +1,61 @@
 ;(function() {
 
-    var makeAjaxCall = window.stackoverflow.makeAjaxCall;
+    var postRequest = window.stackoverflow.postRequest;
     var CSRF_TOKEN = window.stackoverflow.CSRF_TOKEN;
     var displayError = window.stackoverflow.displayError;
 
     function getUsername(){
 
-        return $(document).find("#username").val();
+        username = $(document).find("#username").val();
+
+        if (!username){
+            displayError("#error", "Please enter Username")
+            return;
+        }
+
+        return username
     }
 
     function authenticateUser(){
 
         var username = getUsername();
-
-        if (!username){
-            alert("Please enter Username");
-            return;
-        }
-
         var params = {
             "username": username,
         };
-
         var url = "/login_user";
 
-        var $obj = $.ajax({
-            url: url,
-            type: "POST",
-            data: params,
-            headers: {
-                "X-CSRFToken": CSRF_TOKEN("csrftoken")
-            },
-            dataType: "json",
-        });
-
-        $obj.done(function(result){
-            console.log(result)
+        var request = postRequest(url, params);
+        request.done(function(result){
 
             if (result.success){
-                    window.location = "/home";
+                    window.location = "/";
                     return;
-                }
-
-            else{
-                var error_disp = $("#error");
-                error_disp.addClass("alert alert-danger");
-                error_disp.text("Invalid Credentials");
-
-                $("#error").fadeOut(
-                    2000,
-                    function(){
-                        $(this).remove();
-                    }
-                );
+            } else {
+                displayError("#error", result.message);
             }
         });
     }
 
-    $(document).on("click", "#login", authenticateUser);
+    function signupUser(){
+
+        username = getUsername();
+        var params = {
+            "username": username,
+        };
+        var url = "/signup";
+
+        var request = postRequest(url, params);
+        request.done(function(result){
+
+            if (result.success){
+                    window.location = "/";
+                    return;
+            } else {
+                displayError("#error", result.message);
+            }
+        });
+    }
+
+    $(document).on("click", "#login", authenticateUser)
+            .on("click", "#signup", signupUser);
 })();
