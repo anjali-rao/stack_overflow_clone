@@ -13,3 +13,15 @@
 .pointer {
     cursor: pointer;
 }
+
+.bootstrap-tagsinput {
+    width: 100%;
+}
+
+.bootstrap-tagsinput .tag {
+    color: #2c5777;
+    background-color: #e1ecf4;
+    padding: 3px;
+    border-radius: 3px;
+    font-size: 12px;
+}
