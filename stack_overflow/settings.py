@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'stack_overflow.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'stackoverflow',
-        'USER': 'root',
-        'PASSWORD': 'rockofgibraltar',
-        'HOST': 'localhost',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
         }
 }
 

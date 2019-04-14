@@ -18,7 +18,7 @@
     width: 100%;
 }
 
-.bootstrap-tagsinput .tag {
+.bootstrap-tagsinput .tag, .tag {
     color: #2c5777;
     background-color: #e1ecf4;
     padding: 3px;
@@ -28,4 +28,14 @@
 
 .no-display{
     display: none;
+}
+
+.badge-stack-overflow {
+    width: fit-content;
+    text-align: left;
+    font-weight: 400;
+}
+
+.mt-1-1 {
+    margin-top: -1.1rem;
 }
