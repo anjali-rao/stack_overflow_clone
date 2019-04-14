@@ -1,6 +1,5 @@
 ;( function(global){
 
-var ajax = global.ajax;
 
 global.CSRF_TOKEN = function(name) {
                         var cookieValue = null;
@@ -17,8 +16,21 @@ global.CSRF_TOKEN = function(name) {
                         return cookieValue;
                     };
 
-global.makeAjaxCall = function(url, type) {
-                        return ajax({
+
+global.postRequest = function(url, params){
+                       return  $.ajax({
+                            url: url,
+                            type: "POST",
+                            data: params,
+                            headers: {
+                                "X-CSRFToken": global.CSRF_TOKEN("csrftoken")
+                            },
+                            dataType: "json",
+                        });
+                    }
+
+global.getRequest = function(url, type) {
+                        return $.ajax({
                             url: url,
                             type: type,
                         });
@@ -26,9 +38,9 @@ global.makeAjaxCall = function(url, type) {
 
 global.displayError = function(selector, message) {
 
-                        var errorDisp = $Dom.find(selector);
-                        erroDisp.addClass("alert alert-danger");
-                        erroDisp.text(message);
+                        var errorDisp = $(document).find(selector);
+                        errorDisp.addClass("alert alert-danger");
+                        errorDisp.text(message);
 
                         $(selector).fadeOut(
                             2000,
