@@ -21,3 +21,5 @@ Login using the created username
 - Ask questions Page
     A new question can be asked providing the main question, a brief description of the question and relevant tags.
 
+[Screenshots](https://github.com/anjali-rao/stack_overflow_clone/issues/10)
+
